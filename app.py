@@ -27,7 +27,7 @@ def get():
 city_label = Label(root, text='City', font=('Helvetica'))
 city_label.grid(row=1, column=0)
 
-state_label = Label(root, text='State Abb', font=('Helvetica'))
+state_label = Label(root, text='State Abbreviation', font=('Helvetica'))
 state_label.grid(row=2, column=0)
 
 city_entry = Entry(root, width=25, borderwidth=5)
