@@ -1,14 +1,20 @@
 from tkinter import *
+import tkinter.font as font
 from PIL import ImageTk, Image
 import requests
 import json
 
 root = Tk()
 root.title('Weather app created by FelippoDev')
-root.geometry("550x120")
+root.geometry("380x350")
+myFont = font.Font(size=5)
+my_canvas = Canvas(root, width=380, height=350)
+my_canvas.grid(row=0, column=0)
 
-head = Label(root, text='Check the wheather of your current location', font=("Helvetica"))
-head.grid(row=0, column=0)
+bg = ImageTk.PhotoImage(Image.open('background.jpg'))
+my_canvas.create_image(0, 0, image=bg, anchor=N + W)
+
+my_canvas.create_text(160, 16, text='Check the wheather of your current location', font=('Helvetica'))
 
 
 def get():
@@ -20,23 +26,18 @@ def get():
     temp_max = api['results']['forecast'][0]['max']
     temp_min = api['results']['forecast'][0]['min']
     description = api['results']['description']
-    label = Label(root, text=f'Max temperature {temp_max}°C  Min temperature {temp_min}°C  {description}')
-    label.grid(row=3, column=0)
+    my_canvas.create_text(190, 310, text=f'Max temperature {temp_max}°C  Min temperature {temp_min}°C  {description}')
 
 
-city_label = Label(root, text='City', font=('Helvetica'))
-city_label.grid(row=1, column=0)
+my_canvas.create_text(30, 80, text='City:', font=('Helvetica'))
+city_entry = Entry(my_canvas, width=25, borderwidth=5)
+my_canvas.create_window(120, 120, window=city_entry, height=32, width=200)
 
-state_label = Label(root, text='State Abbreviation', font=('Helvetica'))
-state_label.grid(row=2, column=0)
+my_canvas.create_text(83, 180, text='State Abbreviation:', font=('Helvetica'))
+state_entry = Entry(my_canvas, width=25, borderwidth=5)
+my_canvas.create_window(120, 220, window=state_entry, height=32, width=200)
 
-city_entry = Entry(root, width=25, borderwidth=5)
-city_entry.grid(row=1, column=1)
-
-state_entry = Entry(root, width=25, borderwidth=5)
-state_entry.grid(row=2, column=1)
-
-btn = Button(root, text='search', command=get)
-btn.grid(row=3, column=1)
+btn = Button(my_canvas, text='search', command=get)
+btn.place(x=175, y=260)
 
 root.mainloop()
