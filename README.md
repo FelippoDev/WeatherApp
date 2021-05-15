@@ -1,5 +1,5 @@
 # WeatherApp
-Simple weather app using an API to get the weather data from an external database and using tkinter as GUI for receiving the input.
+Simple weather app using an API to get the weather data from an external database and using tkinter as GUI.
 
 ![ft (4)](https://user-images.githubusercontent.com/65267252/118350655-568aeb80-b52e-11eb-924a-a6e2e4e8e43b.png)
 
